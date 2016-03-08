@@ -120,9 +120,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'aaf_user_index',);
             }
 
-            // aaf_user_articles
-            if (0 === strpos($pathinfo, '/user/articles') && preg_match('#^/user/articles(?:/(?P<page>\\d+))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'aaf_user_articles')), array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::articlesAction',  'page' => 1,));
+            // aaf_user_add
+            if ($pathinfo === '/user/add') {
+                return array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::addAction',  '_route' => 'aaf_user_add',);
+            }
+
+            // aaf_user_edit
+            if (0 === strpos($pathinfo, '/user/edit') && preg_match('#^/user/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'aaf_user_edit')), array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::editAction',));
+            }
+
+            // aaf_user_view
+            if (0 === strpos($pathinfo, '/user/view') && preg_match('#^/user/view/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'aaf_user_view')), array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::viewAction',));
+            }
+
+            // aaf_user_delete
+            if (0 === strpos($pathinfo, '/user/delete') && preg_match('#^/user/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'aaf_user_delete')), array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::deleteAction',));
             }
 
         }
