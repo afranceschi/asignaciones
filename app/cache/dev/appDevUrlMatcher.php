@@ -114,6 +114,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AAF\\UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'aaf_user_homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/user')) {
+            // aaf_user_index
+            if ($pathinfo === '/user/index') {
+                return array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'aaf_user_index',);
+            }
+
+            // aaf_user_articles
+            if (0 === strpos($pathinfo, '/user/articles') && preg_match('#^/user/articles(?:/(?P<page>\\d+))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'aaf_user_articles')), array (  '_controller' => 'AAF\\UserBundle\\Controller\\UserController::articlesAction',  'page' => 1,));
+            }
+
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

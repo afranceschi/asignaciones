@@ -1,3 +1,23 @@
 aaf_user_homepage:
     path:     /
     defaults: { _controller: AAFUserBundle:Default:index }
+
+aaf_user_index:
+    path:   /user/index
+    defaults: {_controller: AAFUserBundle:User:index}
+
+aaf_user_add:
+    path:   /user/add
+    defaults: {_controller: AAFUserBundle:User:add}
+    
+aaf_user_edit:
+    path:   /user/edit/{id}
+    defaults: {_controller: AAFUserBundle:User:edit}
+    
+aaf_user_view:
+    path:   /user/view/{id}
+    defaults: {_controller: AAFUserBundle:User:view}
+    
+aaf_user_delete:
+    path:   /user/delete/{id}
+    defaults: {_controller: AAFUserBundle:User:delete}
